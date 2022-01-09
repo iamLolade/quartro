@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&display=swap');
     body{
+      background: url("https://cdn-media-1.freecodecamp.org/imgr/MJAkxbh.png") no-repeat fixed;
+      background-size: cover;
       max-width: 1200px;
       margin: 20px auto;
       padding: 0 20px;
