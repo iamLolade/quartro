@@ -59,7 +59,9 @@ h2 {
 h3 {
   text-transform: capitalize;
   margin-bottom: 8px;
+  font-weight: bolder;
 }
+
 .content {
   margin-left: 20px;
 }

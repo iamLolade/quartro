@@ -1,7 +1,7 @@
-const { urlencoded } = require("body-parser");
 const express = require("express");
 const mongoose = require("mongoose");
-const Blog = require("./model/blog")
+const blogRoutes = require("./routes/blogRoutes")
+
 
 //express app
 const app = express();
@@ -18,65 +18,18 @@ app.set("view engine", "ejs");
 
 //middleware
 app.use(express.static("public"));
-app.use(urlencoded({extended: true}));
+app.use(express.urlencoded({extended: true}));
 
 //route
+app.use("/blogs", blogRoutes);
 
 //GET Requests
 app.get("/", (req, res) => {
     res.redirect("/blogs")
 })
 
-app.get("/blogs", async (req, res) => {
-    const result = await Blog.find().sort({ createdAt: -1 })
-    try {
-        res.render("index", { title: "All blogs", blogs: result })
-    } catch (error) {
-        console.log(error)
-    }
-})
-
-app.get("/blogs/:id", async (req, res) => {
-    const id = req.params.id
-    const result = await Blog.findById(id);
-
-    try {
-       res.render("details", { blog: result, title: "Blog Details"}) 
-    } catch (error) {
-        console.log(error)
-    }
-})
-
 app.get("/about", (req, res) => {
     res.render("about", { title: "About" })
-})
-
-app.get("/blogs/create", (req, res) => {
-    res.render("create", { title: "New Blog" })
-})
-
-//POST Requests
-app.post("/blogs", async (req, res) => {
-    const blog = new Blog(req.body);
-
-    const result = await blog.save();
-    try {
-        res.redirect("/blogs") 
-    } catch (error) {
-        console.log(error)
-    }
-})
-
-//DELETE Requests
-app.delete("/blogs/:id", async (req, res) => {
-    const id = req.params.id;
-    const result = await Blog.findByIdAndDelete(id)
-
-    try {
-        res.json({ redirect: "/blogs" })
-    } catch (error) {
-        console.log(error)
-    }
 })
 
 app.use((req, res) => {
