@@ -67,6 +67,18 @@ app.post("/blogs", async (req, res) => {
     }
 })
 
+//DELETE Requests
+app.delete("/blogs/:id", async (req, res) => {
+    const id = req.params.id;
+    const result = await Blog.findByIdAndDelete(id)
+
+    try {
+        res.json({ redirect: "/blogs" })
+    } catch (error) {
+        console.log(error)
+    }
+})
+
 app.use((req, res) => {
     res.status(404).render("404", { title: "404" })
 })

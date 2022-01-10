@@ -8,4 +8,21 @@
   </div>
   <a class="delete" data-blog="<%= blog._id%>">❌</a>
 </div>
+
+<script>
+    const trashCan = document.querySelector("a.delete");
+
+    trashCan.addEventListener("click", async (e) => {
+        const result = await fetch(`/blogs/${trashCan.dataset.blog}`, {
+            method: "DELETE"
+        })
+
+        try {
+            const data = await result.json();
+            window.location.href = data.redirect
+        } catch (error) {
+            console.log(error)
+        }
+    })
+</script>
 <%- include("./partials/footer.ejs")%>
