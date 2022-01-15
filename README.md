@@ -4,5 +4,5 @@
 
 ### Users can preview, read, create and delete blog posts.
 
-![Screenshot](public/screenshot1.png)
+![Screenshot](public/screenshot3.png)
 ![Screenshot](public/screenshot2.png)
