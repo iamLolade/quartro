@@ -50,7 +50,7 @@ nav a {
 }
 
 nav a:hover{
-  border-bottom: 3px solid #222;
+  border-bottom: 3px solid rgb(68, 38, 38);
 }
 
 footer {
@@ -78,7 +78,7 @@ h3 {
   border-left: 5px solid rgb(68, 38, 38) ;
 }
 .blogs a:hover h3{
-  color:rgb(68, 32, 32)
+  color:rgb(88, 27, 27)
 }
 /* details styles */
 .details {
