@@ -1,13 +1,15 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const blogRoutes = require("./routes/blogRoutes")
+const dotenv = require("dotenv");
 
+dotenv.config();
 
 //express app
 const app = express();
 
 //connect to database
-const dbURI = "mongodb+srv://caveman:blogdatabase@cluster0.ha1py.mongodb.net/blog_db?retryWrites=true&w=majority";
+const dbURI = process.env.dbURI
 
 mongoose.connect(dbURI)
     .then(() => app.listen(port, () => console.log(`Listening on port: ${port}`)))
@@ -19,6 +21,7 @@ app.set("view engine", "ejs");
 //middleware
 app.use(express.static("public"));
 app.use(express.urlencoded({extended: true}));
+
 
 //route
 app.use("/blogs", blogRoutes);
